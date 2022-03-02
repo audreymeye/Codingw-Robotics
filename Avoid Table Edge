@@ -1,0 +1,48 @@
+#include <Servo.h> // servo library
+Servo servoLeft; // left servo
+Servo servoRight; // right servo
+
+void setup() {
+ pinMode(10, INPUT); pinMode(9, OUTPUT); // left IR led & receiver
+ pinMode(3, INPUT); pinMode(2, OUTPUT); // right IR led & receiver
+ tone(4, 3000, 1000); // one second tone
+ delay(1000); // delay for tone
+ servoLeft.attach(13); // left to pin 13
+ servoRight.attach(12); // right to pin 12
+}
+
+void loop() {
+ int irLeft = irDetect(9, 10, 38000); // check for object on left
+ int irRight = irDetect(2, 3, 38000); // check for object on right
+ if((irLeft == 0) && (irRight == 0)) { // both see table
+   maneuver(200, 200, 20); // forward 20 ms
+ }
+ else if(irLeft == 0) { // left detects, right drop off
+   maneuver(-200, 200, 375); // left 375 ms
+ }
+ else if(irRight == 0) { // right detects, left drop off
+   maneuver(200, -200, 375); // right 375 ms
+ }
+ else { //drop off straight ahead
+ maneuver(-100, -200, 250); // backward and turn 250 ms before retry
+ }
+}
+int irDetect(int irLedPin, int irReceiverPin, long frequency) {
+ tone(irLedPin, frequency, 8); // IR led 38 kHz for at least 1 ms
+ delay(1); // wait 1 ms
+ int ir = digitalRead(irReceiverPin); // IR receiver -> ir variable
+ delay(1); // wait before recheck
+ return ir; // 1 means no detect, 0 means detect
+}
+
+void maneuver(int speedLeft, int speedRight, int msTime) {
+ servoLeft.writeMicroseconds(1497 + speedLeft); // left servo speed
+ servoRight.writeMicroseconds(1533 - speedRight); // right servo speed
+ if(msTime==-1) // If msTime = -1
+ {
+ servoLeft.detach(); // stop servos
+
+ servoRight.detach();
+ }
+ delay(msTime); // delay
+} 
