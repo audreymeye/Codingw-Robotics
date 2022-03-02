@@ -1,29 +1,29 @@
-#include <Servo.h>
+#include <Servo.h> //servo library
  
-Servo servoLeft;
-Servo servoRight;
+Servo servoLeft; //left servo
+Servo servoRight; //right servo
  
 void setup() {
- servoLeft.attach(13);
- servoRight.attach(12);
- servoLeft.writeMicroseconds(1700);
+ servoLeft.attach(13); //left to pin 13
+ servoRight.attach(12); //right to pin 12
+ servoLeft.writeMicroseconds(1700); //forward full speed
  servoRight.writeMicroseconds(1300);
- delay(2500);
+ delay(2500); //for 2.5 seconds
+ servoLeft.writeMicroseconds(1700); //turn right
+ servoRight.writeMicroseconds(1700);
+ delay(680); //for 680 ms
+ servoLeft.writeMicroseconds(1700); //forward full speed
+ servoRight.writeMicroseconds(1300);
+ delay(2500); //for 2.5 seconds
  servoLeft.writeMicroseconds(1700);
  servoRight.writeMicroseconds(1700);
- delay(680);
- servoLeft.writeMicroseconds(1700);
+ delay(680); //for 680 ms
+ servoLeft.writeMicroseconds(1700); //forward full speed
  servoRight.writeMicroseconds(1300);
- delay(2500);
- servoLeft.writeMicroseconds(1700);
- servoRight.writeMicroseconds(1700);
- delay(680);
- servoLeft.writeMicroseconds(1700);
- servoRight.writeMicroseconds(1300);
- delay(2500);
- servoLeft.detach();
+ delay(2500); //for 2.5 seconds
+ servoLeft.detach(); //stop servos
  servoRight.detach();
 }
  
-void loop() {
+void loop() { //nothing loops
 }
