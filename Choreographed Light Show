@@ -1,0 +1,168 @@
+/*
+https://youtu.be/RhGeMuldjLQ
+
+pin 2 = a
+pin 3 = b
+pin 4 = c
+pin 5 = d
+pin 6 = e
+pin 7 = f
+pin 8 = g
+pin 9 = a
+pin 10 = b
+pin 11 = c 
+
+pin 12 = f#
+pin 13 = g#
+*/
+
+int s = 2; //for pin setup
+
+int c = 10; //for c phrase descending
+int b = 9; //for b phrase descending
+int a = 8; //for a phrase descending
+
+int c2 = 5; //for c phrase ascending
+int b2 = 6; //for b phrase ascending
+int a2 = 7; //for a phrase ascending
+ 
+void setup() {
+  for(s = 2; s < 14; s += 1) {
+    pinMode(s, OUTPUT);
+  }
+}
+
+void loop() {
+  digitalWrite(9, LOW); //start of C phrase descending
+  digitalWrite(4, HIGH);
+  delay(200);
+  digitalWrite(4, LOW);
+  digitalWrite(11, HIGH);
+  delay(230);
+  for(c = 10; c > 3; c -= 1){ //C phrase descending
+    digitalWrite(11, LOW);
+    digitalWrite(c, HIGH);
+    delay(230);
+    digitalWrite(c, LOW);
+    digitalWrite(11, HIGH);
+    delay(230);
+  }
+    
+  digitalWrite(11, LOW); //start of B phrase descending
+  digitalWrite(3, HIGH);
+  delay(230);
+  digitalWrite(3, LOW);
+  digitalWrite(10, HIGH);
+  delay(230);
+  for(b = 9; b > 2; b -= 1){ //B phrase
+    digitalWrite(10, LOW);
+    digitalWrite(b, HIGH);
+    delay(230);
+    digitalWrite(b, LOW);
+    digitalWrite(10, HIGH);
+    delay(230);
+  }
+  
+  digitalWrite(10, LOW); //start of A phrase descending
+  digitalWrite(2, HIGH);
+  delay(230);
+  digitalWrite(2, LOW);
+  digitalWrite(9, HIGH);
+  delay(230);
+  for(a = 8; a > 1; a -=1){ // start of A phrase descending
+    digitalWrite(9, LOW);
+    digitalWrite(a, HIGH);
+    delay(230);
+    digitalWrite(a, LOW);
+    digitalWrite(9, HIGH);
+    delay(230);
+  }
+  
+  digitalWrite(9, LOW); //motif
+  delay(230);
+  digitalWrite(9, HIGH);
+  delay(230);
+  digitalWrite(9, LOW);
+  digitalWrite(13, HIGH);
+  delay(230);
+  digitalWrite(13, LOW);
+  digitalWrite(12, HIGH);
+  delay(230);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  digitalWrite(9, HIGH);
+  delay(230);
+  digitalWrite(9, LOW);
+  delay(150);
+  digitalWrite(9, HIGH);
+  delay(2000);
+  
+  
+  digitalWrite(9, LOW); //C phrase ascending
+  digitalWrite(11, HIGH);
+  delay(220);
+  digitalWrite(11, LOW);
+  digitalWrite(4, HIGH);
+  delay(220);
+  for(c2 = 5; c2 < 12; c2 += 1){ //C phrase ascending
+    digitalWrite(4, LOW);
+    digitalWrite(c2, HIGH);
+    delay(220);
+    digitalWrite(c2, LOW);
+    digitalWrite(4, HIGH);
+    delay(220);
+  }
+  
+  digitalWrite(4, LOW); //B phrase ascending
+  digitalWrite(10, HIGH);
+  delay(220);
+  digitalWrite(10, LOW);
+  digitalWrite(3, HIGH);
+  delay(220);
+  for(b2 = 4; b2 < 11; b2 += 1) { //B phrase ascending
+    digitalWrite(3, LOW);
+    digitalWrite(b2, HIGH);
+    delay(220);
+    digitalWrite(b2, LOW);
+    digitalWrite(3, HIGH);
+    delay(220);
+  }
+  
+  digitalWrite(3, LOW);
+  digitalWrite(9, HIGH);
+  delay(220);
+  digitalWrite(9, LOW);
+  digitalWrite(2, HIGH);
+  delay(220);
+  for(a2 = 3; a2 < 10; a2 += 1){
+    digitalWrite(2, LOW);
+    digitalWrite(a2, HIGH);
+    delay(220);
+    digitalWrite(a2, LOW);
+    digitalWrite(2, HIGH);
+    delay(220);
+  }
+  
+  digitalWrite(2, LOW); //motif repeat
+  delay(230);
+  digitalWrite(9, HIGH);
+  delay(230);
+  digitalWrite(9, LOW);
+  digitalWrite(13, HIGH);
+  delay(230);
+  digitalWrite(13, LOW);
+  digitalWrite(12, HIGH);
+  delay(230);
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  digitalWrite(9, HIGH);
+  delay(230);
+  digitalWrite(9, LOW);
+  delay(150);
+  digitalWrite(9, HIGH);
+  delay(2000);
+}
