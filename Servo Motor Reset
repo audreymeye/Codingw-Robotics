@@ -1,0 +1,21 @@
+#include <Servo.h> 
+Servo myServo;
+int servoPosition = 0;
+int button = 2;
+
+void setup(){ 
+  myServo.attach(5);
+  pinMode(button, INPUT);
+  myServo.write(0);
+}
+
+void loop(){
+  while(digitalRead(button) == LOW){
+    servoPosition = servoPosition + 1;
+    myServo.write(servoPosition);
+    delay(100);
+  }
+  if(digitalRead(button) == HIGH){
+      servoPosition = 0;
+  }
+}
